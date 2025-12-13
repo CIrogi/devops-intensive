@@ -1,0 +1,23 @@
+Firewall Policy (iptables)
+=========================
+
+Default policies:
+- INPUT: DROP
+- FORWARD: DROP
+- OUTPUT: ACCEPT
+
+Allowed inbound:
+- Loopback (lo): ACCEPT
+- Established/Related connections: ACCEPT
+- TCP 22 (SSH): ACCEPT
+- TCP 80 (HTTP): ACCEPT
+- TCP 443 (HTTPS): ACCEPT
+
+Blocked inbound:
+- All other inbound traffic is dropped by default policy.
+
+Outbound:
+- All outbound allowed (OUTPUT ACCEPT).
+
+Logging:
+- Dropped INPUT packets are logged at a limited rate (5/min) with prefix "IPTABLES_DROP: "

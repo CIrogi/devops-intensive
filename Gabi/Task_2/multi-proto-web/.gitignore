@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
+
+# SSL certs (never commit private keys)
+certs/
+*.key
+*.crt
+
+# Logs
+*.log
