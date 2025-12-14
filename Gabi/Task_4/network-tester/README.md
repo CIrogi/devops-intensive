@@ -84,14 +84,14 @@ Example:
 ### Requirements
 Python 3.10+
 
-##Setup
+## Setup
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 
-##Usage
+## Usage
 
-###Run network tests
+### Run network tests
 python3 network_tester.py config.json
 
 Example console output:
@@ -103,4 +103,3 @@ Network Service Test Report - 2025-12-10 14:30:22
 ✓ example.com - DNS resolved (12ms)
 
 Summary: 2 passed, 1 failed
-
