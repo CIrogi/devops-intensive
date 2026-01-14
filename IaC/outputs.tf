@@ -2,12 +2,12 @@
 output "instance_ip" {
 
   description = "External IP of instance"
-  value       = aws_instance.example.public_ip
+  value       = aws_instance.example[*].public_ip
 }
 
 output "instance_private_ip" {
   description = "Private IP of instance"
-  value       = aws_instance.example.private_ip
+  value       = aws_instance.example[*].private_ip
 }
 
 output "bucket_region" {
