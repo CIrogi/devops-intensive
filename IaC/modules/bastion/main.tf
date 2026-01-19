@@ -1,7 +1,7 @@
 
 resource "aws_instance" "example" {
   count = var.create_vm ? 1 : 0
-  ami           = data.aws_ami.ubuntu.id
+  ami           = var.ami_id
   instance_type = var.instance_type
 
   vpc_security_group_ids = [aws_security_group.vm_foreach.id] //[aws_security_group.vm.id]
