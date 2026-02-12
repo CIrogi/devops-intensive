@@ -1,0 +1,6 @@
+.git**
+.vscode
+.dockerignore
+Gabi
+IaC
+*.md
