@@ -6,8 +6,6 @@ services:
       dockerfile: Dockerfile
     image: nginx-frontend:latest
     restart: always
-    volumes:
-      - ./Frontend/index2.html:/usr/share/nginx/html/index.html
     ports:
       - "80:80"
     depends_on:
@@ -22,8 +20,7 @@ services:
     restart: always
     environment:
       MY_ARGUMENT: "PROD"
-      DB_HOST: db
-      DB_PORT: 5432
+      DB_URL: jdbc:postgresql://db:5432/mydb
       DB_USER: user
       DB_PASSWORD: password
       DB_NAME: mydb

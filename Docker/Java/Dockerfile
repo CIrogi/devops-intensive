@@ -1,16 +1,20 @@
-FROM azul/zulu-openjdk:22-jdk-crac AS builder
+FROM maven:3.9.8-eclipse-temurin-17 AS build
+WORKDIR /app
 
-WORKDIR /usr/src/myapp
+COPY pom.xml .
+RUN mvn -B -q -DskipTests dependency:go-offline
 
-ARG MY_ARGUMENT="DEV1"
-RUN echo "My Argument is $MY_ARGUMENT"
+COPY src ./src
+RUN mvn -B -q -DskipTests package
 
-ADD HelloWorld.java /usr/src/myapp/
-RUN javac HelloWorld.java
+FROM eclipse-temurin:17-jre
+WORKDIR /app
 
-# FROM azul/zulu-openjdk:22-jre
+RUN addgroup --system app && adduser --system --ingroup app app
 
-# WORKDIR /usr/local/bin/
-CMD ["java", "HelloWorld"]
+COPY --from=build /app/target/demo-api-0.0.1-SNAPSHOT.jar /app/app.jar
 
-# COPY --from=builder /usr/src/myapp/HelloWorld.class /usr/local/bin/HelloWorld.class
+USER app
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]

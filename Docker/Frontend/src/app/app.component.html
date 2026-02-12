@@ -1,0 +1,48 @@
+<main>
+  <header>
+    <div>
+      <h1>Demo API Dashboard</h1>
+      <p>Angular client for the Spring Boot users API.</p>
+    </div>
+    <div class="status">
+      <span class="badge"></span>
+      <span>API: {{ loading ? 'checking...' : (error ? 'offline' : 'online') }}</span>
+    </div>
+  </header>
+
+  <section class="grid">
+    <div class="panel">
+      <h2>Create user</h2>
+      <p>Send a POST to <strong>/api/users</strong></p>
+
+      <div class="form">
+        <label for="name">Name</label>
+        <input id="name" name="name" [(ngModel)]="form.name" placeholder="Ada Lovelace" />
+
+        <label for="email">Email</label>
+        <input id="email" name="email" [(ngModel)]="form.email" placeholder="ada@example.com" />
+
+        <button (click)="createUser()">Create user</button>
+        <button class="secondary" type="button" (click)="loadUsers()">Refresh list</button>
+      </div>
+
+      <p class="notice" *ngIf="error">{{ error }}</p>
+    </div>
+
+    <div class="panel">
+      <h2>Users</h2>
+      <p>GET /api/users</p>
+
+      <div class="list" *ngIf="users.length; else empty">
+        <div class="card" *ngFor="let user of users">
+          <strong>{{ user.name }}</strong>
+          <span>{{ user.email }}</span>
+        </div>
+      </div>
+
+      <ng-template #empty>
+        <p>No users yet. Add the first one.</p>
+      </ng-template>
+    </div>
+  </section>
+</main>

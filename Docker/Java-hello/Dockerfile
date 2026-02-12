@@ -1,0 +1,16 @@
+FROM azul/zulu-openjdk:22-jdk-crac AS builder
+
+WORKDIR /usr/src/myapp
+
+ARG MY_ARGUMENT="DEV1"
+RUN echo "My Argument is $MY_ARGUMENT"
+
+ADD HelloWorld.java /usr/src/myapp/
+RUN javac HelloWorld.java
+
+# FROM azul/zulu-openjdk:22-jre
+
+# WORKDIR /usr/local/bin/
+CMD ["java", "HelloWorld"]
+
+# COPY --from=builder /usr/src/myapp/HelloWorld.class /usr/local/bin/HelloWorld.class
